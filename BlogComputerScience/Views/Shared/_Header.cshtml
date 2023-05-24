@@ -1,0 +1,36 @@
+﻿<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-flex justify-content-center align-items-center" id="navbarNav">
+            <ul class="navbar-nav d-flex justify-content-start align-items-center gap-5">
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Home")" class="fixed">
+                        <img src="/assets/img/logo-no-background.png" style="height: 128px;" />
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-5 text-black" aria-current="page" href="@Url.Action("Index", "Home")">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-5 text-black" href="@Url.Action("Index", "Article")">News</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-5 text-black" href="@Url.Action("Index", "Product")">Prodotti</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-5 text-black" href="@Url.Action("Contacts", "Home")">Contatti</a>
+                </li>
+                <partial name="_LoginPartial" />
+            </ul>
+        </div>
+    </div>
+</nav>
+

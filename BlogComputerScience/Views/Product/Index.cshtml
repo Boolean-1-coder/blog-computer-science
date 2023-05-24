@@ -1,0 +1,89 @@
+﻿@model List<Product>
+
+<div>
+    <div class="container mt-5">
+        <div class="w-75 p-3 m-auto">
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    @foreach(Product p in Model)
+                    {
+                        <div class="carousel-item active">
+                            <img src="@p.ImgUrl" class="d-block w-50" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>@p.Name</h5>
+                                <p>@p.Description</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <button class="carousel-control-prev btn-dark" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next btn-dark" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3>Lista degli articoli</h3>
+            </div>
+        </div>
+        @if (User.IsInRole("ADMIN"))
+        {
+            @* AGGIUNGI PRODOTTO *@
+            <div class="row">
+                <div class="col-12">
+                    <a asp-action="Create" asp-controller="Product"  class="btn btn-primary">
+                        Aggiungi prodotto
+                    </a>
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Immagine</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Descrizione</th>
+                                <th scope="col">Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Product product in Model)
+                            {
+                                <tr>
+                                    <td><img class="img-fluid img_square" src="@product.ImgUrl" style="width: 10rem;" alt="Immagine @product.Name"></td>
+                                    <td>@product.Name</td>
+                                    <td>
+                                        @product.Description
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info btn-sm" href="@Url.Action("Details", "Product", new { id = product.Id})">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                        </a>
+                                        @if (User.IsInRole("ADMIN"))
+                                        {
+                                            <a class="btn btn-warning btn-sm mt-2" asp-action="Update" asp-controller="Product" asp-route-id="@product.Id">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polygon points="14 2 18 6 7 17 3 17 3 13 14 2"></polygon><line x1="3" y1="22" x2="21" y2="22"></line></svg>
+                                            </a>
+                                            <form asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id" method="post">
+                                                @Html.AntiForgeryToken()
+                                                <button type="submit" class="btn btn-danger btn-sm mt-2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                                                </button>
+                                            </form>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,21 @@
+﻿@using BlogComputerScience.Models.ModelForViews
+@model ProfileListArticles
+
+
+@if(Model.ResultArticles.Count == 0)
+{
+    <h2>Non ho trovato articoli con la ricerca "@Model.SearchString"!</h2>
+} else
+{
+    <h2>Ho trovato i seguenti articoli con la ricerca "@Model.SearchString":</h2>
+    <ol>
+        @foreach (Article article in Model.ResultArticles)
+        {
+            <li>@article.Title - @article.Description</li>
+        }
+
+    </ol>
+}
+
+<p>Profilo attualmente connesso: @Model.Profile.Name @Model.Profile.Surname, @Model.Profile.Age</p>
+

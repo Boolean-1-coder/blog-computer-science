@@ -1,0 +1,36 @@
+﻿@model Product
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 m-auto">
+         <form asp-controller="Product" asp-action="Update" asp-route-id="@Model.Id" method="post">
+             @Html.AntiForgeryToken()
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Nome Prodotto</label>
+                    <input asp-for="Name" type="text" class="form-control "  required>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label">Descrizione prodotto</label>
+                    <input asp-for="Description" type="text" class="form-control  " required>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ImgUrl" class="form-label">URL Immagine</label>
+                    <input asp-for="ImgUrl" type="text" class="form-control  " required>
+                    <span asp-validation-for="ImgUrl" class="text-danger"></span>
+                </div>
+
+                 <div class="my-3">
+                    <label asp-for="Ranking">Ranking</label>
+                    <input asp-for="Ranking" type="number" class="form-control  " id="Ranking" >
+                    <span asp-validation-for="Ranking" class="text-danger"></span>
+
+                </div>
+              <button type="submit" class="btn btn-outline-success btn-lg my-3 ">Aggiorna prodotto</button>
+         </form>
+        </div>
+    </div>
+</div>
