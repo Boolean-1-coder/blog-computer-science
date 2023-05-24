@@ -16,7 +16,7 @@ namespace BlogComputerScience.Controllers
             {
 
                 productList = db.Products.OrderBy(p => p.Ranking).ToList();
-
+                //TODO: ndsaybedybes dhsbeuybs edfdhsebdu
 
             }
 
@@ -61,7 +61,7 @@ namespace BlogComputerScience.Controllers
             {
                 db.Products.Add(NewProduct);
                 db.SaveChanges();
-
+                //TODO: ndsaybedybes dhsbeuybs edfdhsebdu
                 return RedirectToAction("Index");
             }
         }
@@ -88,6 +88,7 @@ namespace BlogComputerScience.Controllers
         {
             if(!ModelState.IsValid)
             {
+                //TODO: ndsaybedybes dhsbeuybs edfdhsebdu
                 return View("Create", updatedProduct);
             } else
             {
