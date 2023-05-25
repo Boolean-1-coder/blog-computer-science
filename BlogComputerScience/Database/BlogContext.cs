@@ -9,6 +9,7 @@ namespace BlogComputerScience.Database
     {
         public DbSet<Article> Articles { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

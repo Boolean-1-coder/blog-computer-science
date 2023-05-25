@@ -5,9 +5,13 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        //public string Category { get; set; } da aggiungere relazioni 1 a N.
+       
         public string ImgUrl { get; set; }
         public int Ranking { get; set; }
+
+        //public string Category { get; set; } da aggiungere relazioni 1 a N.
+        public int? ProductCategoryId { get; set; }
+        public ProductCategory? Category { get; set; }
 
         public Product() { }
 

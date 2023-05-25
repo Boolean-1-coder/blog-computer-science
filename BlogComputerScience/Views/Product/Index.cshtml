@@ -2,28 +2,32 @@
 
 <div>
     <div class="container mt-5">
-        <div class="w-75 p-3 m-auto">
-            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    @foreach(Product p in Model)
-                    {
-                        <div class="carousel-item active">
-                            <img src="@p.ImgUrl" class="d-block w-50" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>@p.Name</h5>
-                                <p>@p.Description</p>
-                            </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="p-3 m-auto">
+                    <div id="carouselExampleAutoplaying" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">  
+                            @for(int i=0; i<Model.Count; i++)
+                            {
+                                <div class="carousel-item @(i == 0 ? "active" : "")">
+                                    <img height="400" src="@Model[i].ImgUrl" class="align-content-center" alt="...">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>@Model[i].Name</h5>
+                                        <p>@Model[i].Description</p>
+                                    </div>
+                                </div>
+                            }
                         </div>
-                    }
+                        <button class="carousel-control-prev btn-dark" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next btn-dark" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
                 </div>
-                <button class="carousel-control-prev btn-dark" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next btn-dark" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
         </div>
         <div class="row">
@@ -49,6 +53,7 @@
                                 <th scope="col">Immagine</th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Descrizione</th>
+                                <th scope="col">Ranking</th>
                                 <th scope="col">Azioni</th>
                             </tr>
                         </thead>
@@ -61,6 +66,7 @@
                                     <td>
                                         @product.Description
                                     </td>
+                                    <td>@product.Ranking</td>
                                     <td>
                                         <a class="btn btn-info btn-sm" href="@Url.Action("Details", "Product", new { id = product.Id})">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>

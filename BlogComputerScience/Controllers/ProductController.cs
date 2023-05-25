@@ -2,6 +2,7 @@
 
 using BlogComputerScience.Database;
 using BlogComputerScience.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlogComputerScience.Controllers
 {
@@ -27,7 +28,7 @@ namespace BlogComputerScience.Controllers
         {
             using (BlogContext db = new BlogContext())
             {
-                Product? ProductDetails = db.Products.Where(product => product.Id == id).FirstOrDefault();
+                Product? ProductDetails = db.Products.Where(product => product.Id == id).Include(product => product.Category).FirstOrDefault();
                 if(ProductDetails != null)
                 {
                     return View("Details", ProductDetails);
@@ -43,9 +44,9 @@ namespace BlogComputerScience.Controllers
 
          [HttpGet]
          public IActionResult Create()
-            {
-                return View("Create");
-            }
+         {
+            return View("Create");
+         }   
 
 
         [HttpPost]
